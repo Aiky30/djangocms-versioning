@@ -126,9 +126,6 @@ class VersioningAdminMixin:
         return super().get_readonly_fields(request, obj)
 
     def has_change_permission(self, request, obj=None):
-        if obj and DJANGO_GTE_21:
-            version = Version.objects.get_for_content(obj)
-            return version.check_modify.as_bool(request.user)
         return super().has_change_permission(request, obj)
 
 
